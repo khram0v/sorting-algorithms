@@ -1,3 +1,5 @@
+package io.github.khram0v;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,11 +12,11 @@ public class Sorting {
      * compares adjacent elements, and swaps them if they are in the wrong order.
      * The process repeats until the entire list is sorted.</p>
      *
-     * @param array the `Array` instance containing the list of numbers to be sorted.
+     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
      * @param ascending if true, sorts in ascending order; if false, sorts in descending order.
      */
     public static void bubbleSort(Array array, boolean ascending) {
-        // retrieve the list of numbers from the Array instance
+        // retrieve the list of numbers from the io.github.khram0v.Array instance
         List<Integer> numbers = array.getNumbers();
         int size = numbers.size();
 
@@ -39,11 +41,11 @@ public class Sorting {
      * selects the smallest (or largest) element from the unsorted section and places it at
      * the end of the sorted section.</p>
      *
-     * @param array the `Array` instance containing the list of numbers to be sorted.
+     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
      * @param ascending if true, sorts in ascending order; if false, sorts in descending order.
      */
     public static void selectionSort(Array array, boolean ascending) {
-        // retrieve the list of numbers from the Array instance
+        // retrieve the list of numbers from the io.github.khram0v.Array instance
         List<Integer> numbers = array.getNumbers();
         int size = numbers.size();
 
@@ -73,11 +75,11 @@ public class Sorting {
      * taking the next element from the unsorted section and inserting it into the
      * correct position in the sorted section.</p>
      *
-     * @param array the `Array` instance containing the list of numbers to be sorted.
+     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
      * @param ascending if true, sorts in ascending order; if false, sorts in descending order.
      */
     public static void insertionSort(Array array, boolean ascending) {
-        // retrieve the list of numbers from the Array instance
+        // retrieve the list of numbers from the io.github.khram0v.Array instance
         List<Integer> numbers = array.getNumbers();
         int size = numbers.size();
 
@@ -106,7 +108,7 @@ public class Sorting {
      * <p>Merge Sort is a divide-and-conquer algorithm that recursively splits the list into
      * halves, sorts each half, and merges the sorted halves back together.</p>
      *
-     * @param array the `Array` instance containing the list of numbers to be sorted.
+     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
      * @param left the starting index of the sub-list to sort.
      * @param right the ending index of the sub-list to sort.
      * @param ascending if true, sorts in ascending order; if false, sorts in descending order.
@@ -128,14 +130,14 @@ public class Sorting {
     /**
      * Merges two sorted halves of the list into a single sorted list.
      *
-     * @param array the `Array` instance containing the list of numbers to be sorted.
+     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
      * @param left the starting index of the left half.
      * @param mid the ending index of the left half, one less than the start index of the right half.
      * @param right the ending index of the right half.
      * @param ascending if true, merges in ascending order; if false, merges in descending order.
      */
     private static void merge(Array array, int left, int mid, int right, boolean ascending) {
-        // retrieve the list of numbers from the Array instance
+        // retrieve the list of numbers from the io.github.khram0v.Array instance
         List<Integer> numbers = array.getNumbers();
 
         int n1 = mid - left + 1; // size of the left sub-list
@@ -186,7 +188,7 @@ public class Sorting {
      * that elements less than the pivot are on one side and those greater are on the other.
      * It then recursively sorts each half.</p>
      *
-     * @param array the `Array` instance containing the list of numbers to be sorted.
+     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
      * @param low the starting index of the portion of the array to sort.
      * @param high the ending index of the portion of the array to sort.
      * @param ascending if true, sorts in ascending order; if false, sorts in descending order.
@@ -209,14 +211,14 @@ public class Sorting {
      * ascending or descending order based on the pivot's value. Elements less than the pivot
      * are moved to its left, and elements greater than the pivot to its right (or vice versa).
      *
-     * @param array the `Array` instance containing the list of numbers to be sorted.
+     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
      * @param low the starting index of the section to partition.
      * @param high the ending index of the section to partition, where the pivot is located.
      * @param ascending if true, partitions the list for ascending order; if false, partitions for descending order.
      * @return the index position of the pivot after partitioning. Serves as a dividing point for further sorting.
      */
     private static int partition(Array array, int low, int high, boolean ascending) {
-        // retrieve the list of numbers from the Array instance
+        // retrieve the list of numbers from the io.github.khram0v.Array instance
         List<Integer> numbers = array.getNumbers();
 
         // set the pivot to the last element in the current segment of the list

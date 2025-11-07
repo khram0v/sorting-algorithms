@@ -1,3 +1,5 @@
+package io.github.khram0v;
+
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -62,7 +64,7 @@ public class Main {
      * Prints main menu and prompts user to choose the action.
      *
      * @param sc the Scanner object used to read user input.
-     * @param array the `Array` instance used to pass it to other `Menu` methods.
+     * @param array the `io.github.khram0v.Array` instance used to pass it to other `Menu` methods.
      */
     public static void displayMainMenu(Scanner sc, Array array) {
         int choice = -1;
@@ -71,8 +73,8 @@ public class Main {
             // display menu of options
             System.out.println("\nWant to put some numbers here?");
             System.out.println("Or you're ready for sorting?");
-            System.out.println("\t1. Array actions");
-            System.out.println("\t2. Sorting");
+            System.out.println("\t1. io.github.khram0v.Array actions");
+            System.out.println("\t2. io.github.khram0v.Sorting");
             System.out.println("\t0. Exit");
 
             try {
@@ -109,7 +111,7 @@ public class Main {
      * Prints menu with array actions and prompts user to choose the action.
      *
      * @param sc the Scanner object used to read user input.
-     * @param array the `Array` instance used to perform actions with list.
+     * @param array the `io.github.khram0v.Array` instance used to perform actions with list.
      */
     private static void displayArrayMenu(Scanner sc, Array array) {
         int choice = -1;
@@ -170,7 +172,7 @@ public class Main {
      * Prints menu with array actions and prompts user to choose the action.
      *
      * @param sc the Scanner object used to read user input.
-     * @param array the `Array` instance containing the list of numbers to be sorted.
+     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
      */
     public static void displaySortingMenu(Scanner sc, Array array) {
         int choice = -1;

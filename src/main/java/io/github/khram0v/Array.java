@@ -1,3 +1,5 @@
+package io.github.khram0v;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;

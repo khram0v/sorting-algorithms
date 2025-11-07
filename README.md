@@ -8,12 +8,12 @@ The focus is on practical implementation and performance considerations.
     ```bash
     git clone https://github.com/khram0v/sorting-algorithms.git
 2. Use any Java IDE (IntelliJ, Eclipse etc.) to view files
-3. In Shell or terminal make sure you are in src directory and run command: `javac Main.java`
+3. In Shell or terminal make sure you are in src directory and run command: `javac src/main/java/io/github/khram0v/*.java`
 4. After completion your folder will contain 3 .class files
-5. In terminal run command: `java Main`
+5. In terminal run command: `java -cp src/main/java io.github.khram0v.Main`
 
 ## Visual
-After running `java Main` you should see this interface
+After running Main class you should see this interface
 
 ![Main Menu](https://github.com/user-attachments/assets/c6deec18-9e82-4b85-abc5-0a5fd5f833d3)
 

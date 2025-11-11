@@ -1,29 +1,17 @@
-package io.github.khram0v;
+package io.github.khram0v.model;
+
+import io.github.khram0v.app.SortingApp;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class Array {
-    private List<Integer> numbers = null;
+public class SortableCollection<T> {
+    private List<Integer> elements;
 
-    public Array() {
-        numbers = new ArrayList<>();
-
-        // numbers for an example
-        numbers.add(5);
-        numbers.add(2);
-        numbers.add(3);
-        numbers.add(1);
-        numbers.add(4);
-    }
-
-    public void printArray() {
-        System.out.println();
-        System.out.println(numbers);
-
-        Main.returnToMainMenu();
+    public SortableCollection() {
+        elements = new ArrayList<>();
     }
 
     /**
@@ -45,13 +33,13 @@ public class Array {
             // checks if input is valid
             if (amount <= 0) {
                 System.out.println("You can't add less than 1 number!");
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
                 return;
             }
         } catch (InputMismatchException e) {
             System.out.println("Sorry, buddy, only numbers allowed.");
             sc.nextLine();
-            Main.returnToMainMenu();
+            SortingApp.returnToMainMenu();
             return;
         }
 
@@ -64,13 +52,13 @@ public class Array {
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, buddy, only numbers allowed.");
                 sc.nextLine();
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
                 return;
             }
         }
 
         System.out.println("Success! All your numbers are added!");
-        Main.returnToMainMenu();
+        SortingApp.returnToMainMenu();
     }
 
     /**
@@ -90,16 +78,16 @@ public class Array {
         } catch (InputMismatchException e) {
             System.out.println("Sorry, buddy, only numbers allowed.");
             sc.nextLine();
-            Main.returnToMainMenu();
+            SortingApp.returnToMainMenu();
             return;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Wrong index, bro.");
-            Main.returnToMainMenu();
+            SortingApp.returnToMainMenu();
             return;
         }
 
         System.out.println("Success! Your number is removed!");
-        Main.returnToMainMenu();
+        SortingApp.returnToMainMenu();
     }
 
     /**
@@ -119,7 +107,7 @@ public class Array {
         } catch (InputMismatchException e) {
             System.out.println("Sorry, buddy, only numbers allowed.");
             sc.nextLine();
-            Main.returnToMainMenu();
+            SortingApp.returnToMainMenu();
             return;
         }
 
@@ -131,16 +119,16 @@ public class Array {
         } catch (InputMismatchException e) {
             System.out.println("Sorry, buddy, only numbers allowed.");
             sc.nextLine();
-            Main.returnToMainMenu();
+            SortingApp.returnToMainMenu();
             return;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Wrong index, bro.");
-            Main.returnToMainMenu();
+            SortingApp.returnToMainMenu();
             return;
         }
 
         System.out.println("Success! Your number is replaced!");
-        Main.returnToMainMenu();
+        SortingApp.returnToMainMenu();
     }
 
     public List<Integer> getNumbers() {

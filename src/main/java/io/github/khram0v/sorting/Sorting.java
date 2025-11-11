@@ -1,4 +1,6 @@
-package io.github.khram0v;
+package io.github.khram0v.sorting;
+
+import io.github.khram0v.model.SortableCollection;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,12 +14,12 @@ public class Sorting {
      * compares adjacent elements, and swaps them if they are in the wrong order.
      * The process repeats until the entire list is sorted.</p>
      *
-     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
+     * @param sortableCollection the `io.github.khram0v.model.Array` instance containing the list of numbers to be sorted.
      * @param ascending if true, sorts in ascending order; if false, sorts in descending order.
      */
-    public static void bubbleSort(Array array, boolean ascending) {
-        // retrieve the list of numbers from the io.github.khram0v.Array instance
-        List<Integer> numbers = array.getNumbers();
+    public static void bubbleSort(SortableCollection sortableCollection, boolean ascending) {
+        // retrieve the list of numbers from the io.github.khram0v.model.Array instance
+        List<Integer> numbers = sortableCollection.getNumbers();
         int size = numbers.size();
 
         // outer loop controls the number of passes needed to complete sorting
@@ -41,12 +43,12 @@ public class Sorting {
      * selects the smallest (or largest) element from the unsorted section and places it at
      * the end of the sorted section.</p>
      *
-     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
+     * @param sortableCollection the `io.github.khram0v.model.Array` instance containing the list of numbers to be sorted.
      * @param ascending if true, sorts in ascending order; if false, sorts in descending order.
      */
-    public static void selectionSort(Array array, boolean ascending) {
-        // retrieve the list of numbers from the io.github.khram0v.Array instance
-        List<Integer> numbers = array.getNumbers();
+    public static void selectionSort(SortableCollection sortableCollection, boolean ascending) {
+        // retrieve the list of numbers from the io.github.khram0v.model.Array instance
+        List<Integer> numbers = sortableCollection.getNumbers();
         int size = numbers.size();
 
         // outer loop controls the number of passes needed to complete sorting
@@ -75,12 +77,12 @@ public class Sorting {
      * taking the next element from the unsorted section and inserting it into the
      * correct position in the sorted section.</p>
      *
-     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
+     * @param sortableCollection the `io.github.khram0v.model.Array` instance containing the list of numbers to be sorted.
      * @param ascending if true, sorts in ascending order; if false, sorts in descending order.
      */
-    public static void insertionSort(Array array, boolean ascending) {
-        // retrieve the list of numbers from the io.github.khram0v.Array instance
-        List<Integer> numbers = array.getNumbers();
+    public static void insertionSort(SortableCollection sortableCollection, boolean ascending) {
+        // retrieve the list of numbers from the io.github.khram0v.model.Array instance
+        List<Integer> numbers = sortableCollection.getNumbers();
         int size = numbers.size();
 
         // start from the second element and iterate through the list
@@ -108,37 +110,37 @@ public class Sorting {
      * <p>Merge Sort is a divide-and-conquer algorithm that recursively splits the list into
      * halves, sorts each half, and merges the sorted halves back together.</p>
      *
-     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
+     * @param sortableCollection the `io.github.khram0v.model.Array` instance containing the list of numbers to be sorted.
      * @param left the starting index of the sub-list to sort.
      * @param right the ending index of the sub-list to sort.
      * @param ascending if true, sorts in ascending order; if false, sorts in descending order.
      */
-    public static void mergeSort(Array array, int left, int right, boolean ascending) {
+    public static void mergeSort(SortableCollection sortableCollection, int left, int right, boolean ascending) {
         // check if the left index is less than the right index to ensure there are at least two elements to sort
         if (left < right) {
             int mid = (left + right) / 2;
 
             // recursively sort the left half of the list
-            mergeSort(array, left, mid, ascending);
+            mergeSort(sortableCollection, left, mid, ascending);
             // recursively sort the right half of the list
-            mergeSort(array, mid + 1, right, ascending);
+            mergeSort(sortableCollection, mid + 1, right, ascending);
             // merge two sorted halves back together
-            merge(array, left, mid, right, ascending);
+            merge(sortableCollection, left, mid, right, ascending);
         }
     }
 
     /**
      * Merges two sorted halves of the list into a single sorted list.
      *
-     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
+     * @param sortableCollection the `io.github.khram0v.model.Array` instance containing the list of numbers to be sorted.
      * @param left the starting index of the left half.
      * @param mid the ending index of the left half, one less than the start index of the right half.
      * @param right the ending index of the right half.
      * @param ascending if true, merges in ascending order; if false, merges in descending order.
      */
-    private static void merge(Array array, int left, int mid, int right, boolean ascending) {
-        // retrieve the list of numbers from the io.github.khram0v.Array instance
-        List<Integer> numbers = array.getNumbers();
+    private static void merge(SortableCollection sortableCollection, int left, int mid, int right, boolean ascending) {
+        // retrieve the list of numbers from the io.github.khram0v.model.Array instance
+        List<Integer> numbers = sortableCollection.getNumbers();
 
         int n1 = mid - left + 1; // size of the left sub-list
         int n2 = right - mid;    // size of the left sub-list
@@ -188,38 +190,38 @@ public class Sorting {
      * that elements less than the pivot are on one side and those greater are on the other.
      * It then recursively sorts each half.</p>
      *
-     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
-     * @param low the starting index of the portion of the array to sort.
-     * @param high the ending index of the portion of the array to sort.
+     * @param sortableCollection the `io.github.khram0v.model.Array` instance containing the list of numbers to be sorted.
+     * @param low the starting index of the portion of the sortableCollection to sort.
+     * @param high the ending index of the portion of the sortableCollection to sort.
      * @param ascending if true, sorts in ascending order; if false, sorts in descending order.
      */
-    public static void quickSort(Array array, int low, int high, boolean ascending) {
+    public static void quickSort(SortableCollection sortableCollection, int low, int high, boolean ascending) {
         // check if the current segment has more than one element
         if (low < high) {
             // partition the list and get the index of the pivot
-            int pivotIndex = partition(array, low, high, ascending);
+            int pivotIndex = partition(sortableCollection, low, high, ascending);
 
             // recursively sort the left sub-list
-            quickSort(array, low, pivotIndex - 1, ascending);
+            quickSort(sortableCollection, low, pivotIndex - 1, ascending);
             // recursively sort the right sub-list
-            quickSort(array, pivotIndex + 1, high, ascending);
+            quickSort(sortableCollection, pivotIndex + 1, high, ascending);
         }
     }
 
     /**
-     * Partitions a section of the array around a pivot element, organizing elements in either
+     * Partitions a section of the sortableCollection around a pivot element, organizing elements in either
      * ascending or descending order based on the pivot's value. Elements less than the pivot
      * are moved to its left, and elements greater than the pivot to its right (or vice versa).
      *
-     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
+     * @param sortableCollection the `io.github.khram0v.model.Array` instance containing the list of numbers to be sorted.
      * @param low the starting index of the section to partition.
      * @param high the ending index of the section to partition, where the pivot is located.
      * @param ascending if true, partitions the list for ascending order; if false, partitions for descending order.
      * @return the index position of the pivot after partitioning. Serves as a dividing point for further sorting.
      */
-    private static int partition(Array array, int low, int high, boolean ascending) {
-        // retrieve the list of numbers from the io.github.khram0v.Array instance
-        List<Integer> numbers = array.getNumbers();
+    private static int partition(SortableCollection sortableCollection, int low, int high, boolean ascending) {
+        // retrieve the list of numbers from the io.github.khram0v.model.Array instance
+        List<Integer> numbers = sortableCollection.getNumbers();
 
         // set the pivot to the last element in the current segment of the list
         int pivot = numbers.get(high);
@@ -276,7 +278,7 @@ public class Sorting {
         System.out.println("""
             This is divide-and-conquer algorithm. It recursively divides the list into two halves,
             sorts each half, and the then merges the sorted halves to produce the final output.
-            The `merge` function combines two sorted sub-lists into a single sorted array.
+            The `merge` function combines two sorted sub-lists into a single sorted sortableCollection.
         Big O               |    Best    |         |   Average   |        |    Worst    |
         Notation:             O(n*log(n))            O(n*log(n))            O(n*log(n))
         """);

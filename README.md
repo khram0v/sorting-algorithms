@@ -10,7 +10,7 @@ The focus is on practical implementation and performance considerations.
 2. Use any Java IDE (IntelliJ, Eclipse etc.) to view files
 3. In Shell or terminal make sure you are in src directory and run command: `javac src/main/java/io/github/khram0v/*.java`
 4. After completion your folder will contain 3 .class files
-5. In terminal run command: `java -cp src/main/java io.github.khram0v.Main`
+5. In terminal run command: `java -cp src/main/java io.github.khram0v.app.SortingApp`
 
 ## Visual
 After running Main class you should see this interface

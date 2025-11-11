@@ -1,16 +1,19 @@
-package io.github.khram0v;
+package io.github.khram0v.app;
+
+import io.github.khram0v.model.SortableCollection;
+import io.github.khram0v.sorting.Sorting;
 
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+public class SortingApp {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Array array = new Array();
+        SortableCollection sortableCollection = new SortableCollection();
 
         while (true) {
-            Main.displayMainMenu(sc, array);
+            SortingApp.displayMainMenu(sc, sortableCollection);
         }
     }
 
@@ -46,13 +49,13 @@ public class Main {
                 // checks if input is valid
                 if (!(order == 1 || order == 2)) {
                     System.out.println("Hey, try again, bro.");
-                    Main.returnToMainMenu();
+                    SortingApp.returnToMainMenu();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, buddy, only numbers allowed.");
                 sc.nextLine();
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
             }
         } while (!(order == 1 || order == 2)); // repeat until a valid choice is made
 
@@ -64,17 +67,17 @@ public class Main {
      * Prints main menu and prompts user to choose the action.
      *
      * @param sc the Scanner object used to read user input.
-     * @param array the `io.github.khram0v.Array` instance used to pass it to other `Menu` methods.
+     * @param sortableCollection the `io.github.khram0v.model.Array` instance used to pass it to other `Menu` methods.
      */
-    public static void displayMainMenu(Scanner sc, Array array) {
+    public static void displayMainMenu(Scanner sc, SortableCollection sortableCollection) {
         int choice = -1;
 
         do {
             // display menu of options
             System.out.println("\nWant to put some numbers here?");
             System.out.println("Or you're ready for sorting?");
-            System.out.println("\t1. io.github.khram0v.Array actions");
-            System.out.println("\t2. io.github.khram0v.Sorting");
+            System.out.println("\t1. io.github.khram0v.model.Array actions");
+            System.out.println("\t2. io.github.khram0v.sorting.Sorting");
             System.out.println("\t0. Exit");
 
             try {
@@ -84,23 +87,23 @@ public class Main {
                 // checks if input is valid
                 if (choice < 0 || choice > 2) {
                     System.out.println("Hey, try again, bro.");
-                    Main.returnToMainMenu();
+                    SortingApp.returnToMainMenu();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, buddy, only numbers allowed.");
                 sc.nextLine();
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
             }
         } while (choice < 0 || choice > 2);
 
         // performs an action based on user input
         switch (choice) {
             case 1:
-                displayArrayMenu(sc, array);
+                displayArrayMenu(sc, sortableCollection);
                 break;
             case 2:
-                displaySortingMenu(sc, array);
+                displaySortingMenu(sc, sortableCollection);
                 break;
             case 0:
                 System.exit(0);
@@ -111,9 +114,9 @@ public class Main {
      * Prints menu with array actions and prompts user to choose the action.
      *
      * @param sc the Scanner object used to read user input.
-     * @param array the `io.github.khram0v.Array` instance used to perform actions with list.
+     * @param sortableCollection the `io.github.khram0v.model.Array` instance used to perform actions with list.
      */
-    private static void displayArrayMenu(Scanner sc, Array array) {
+    private static void displayArrayMenu(Scanner sc, SortableCollection sortableCollection) {
         int choice = -1;
 
         do {
@@ -133,38 +136,38 @@ public class Main {
                 // checks if input is valid
                 if (choice < 0 || choice > 4) {
                     System.out.println("Hey, try again, bro.");
-                    Main.returnToMainMenu();
+                    SortingApp.returnToMainMenu();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, buddy, only numbers allowed.");
                 sc.nextLine();
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
             }
         } while (choice < 0 || choice > 4);
 
         // performs an action based on user input
         switch (choice) {
             case 1:
-                array.printArray();
+                sortableCollection.printArray();
                 break;
             case 2:
-                array.addNumbers(sc);
+                sortableCollection.addNumbers(sc);
                 break;
             case 3:
-                array.removeNumber(sc);
+                sortableCollection.removeNumber(sc);
                 break;
             case 4:
-                array.replaceNumber(sc);
+                sortableCollection.replaceNumber(sc);
                 break;
             case 0:
-                displayMainMenu(sc, array);
+                displayMainMenu(sc, sortableCollection);
                 break;
         }
 
         // checks if user wants to exit this menu
         if (choice != 0) {
-            displayArrayMenu(sc, array);
+            displayArrayMenu(sc, sortableCollection);
         }
     }
 
@@ -172,12 +175,12 @@ public class Main {
      * Prints menu with array actions and prompts user to choose the action.
      *
      * @param sc the Scanner object used to read user input.
-     * @param array the `io.github.khram0v.Array` instance containing the list of numbers to be sorted.
+     * @param sortableCollection the `io.github.khram0v.model.Array` instance containing the list of numbers to be sorted.
      */
-    public static void displaySortingMenu(Scanner sc, Array array) {
+    public static void displaySortingMenu(Scanner sc, SortableCollection sortableCollection) {
         int choice = -1;
         boolean ascending;
-        int numbersSize = array.getNumbers().size();
+        int numbersSize = sortableCollection.getNumbers().size();
 
         do {
             // display menu of options
@@ -199,83 +202,83 @@ public class Main {
                 // checks if input is valid
                 if (choice < 0 || choice > 7) {
                     System.out.println("Hey, try again, bro.");
-                    Main.returnToMainMenu();
+                    SortingApp.returnToMainMenu();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, buddy, only numbers allowed.");
                 sc.nextLine();
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
             }
         } while (choice < 0 || choice > 7);
 
         // performs an action based on user input
         switch (choice) {
             case 1:
-                ascending = Main.orderPrompt(sc);
-                Sorting.bubbleSort(array, ascending);
+                ascending = SortingApp.orderPrompt(sc);
+                Sorting.bubbleSort(sortableCollection, ascending);
 
                 System.out.println("Success! All your numbers are sorted now by Bubble Sort!");
                 System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
                 break;
             case 2:
-                ascending = Main.orderPrompt(sc);
-                Sorting.selectionSort(array, ascending);
+                ascending = SortingApp.orderPrompt(sc);
+                Sorting.selectionSort(sortableCollection, ascending);
 
                 System.out.println("Success! All your numbers are sorted now by Selection Sort!");
                 System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
                 break;
             case 3:
-                ascending = Main.orderPrompt(sc);
-                Sorting.insertionSort(array, ascending);
+                ascending = SortingApp.orderPrompt(sc);
+                Sorting.insertionSort(sortableCollection, ascending);
 
                 System.out.println("Success! All your numbers are sorted now by Insertion Sort!");
                 System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
                 break;
             case 4:
-                ascending = Main.orderPrompt(sc);
-                Sorting.mergeSort(array, 0, numbersSize - 1, ascending);
+                ascending = SortingApp.orderPrompt(sc);
+                Sorting.mergeSort(sortableCollection, 0, numbersSize - 1, ascending);
 
                 System.out.println("Success! All your numbers are sorted now by Merge Sort!");
                 System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
                 break;
             case 5:
-                ascending = Main.orderPrompt(sc);
-                Sorting.quickSort(array, 0, numbersSize - 1, ascending);
+                ascending = SortingApp.orderPrompt(sc);
+                Sorting.quickSort(sortableCollection, 0, numbersSize - 1, ascending);
 
                 System.out.println("Success! All your numbers are sorted now by Quick Sort!");
                 System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
                 break;
             case 6:
-                Collections.shuffle(array.getNumbers());
+                Collections.shuffle(sortableCollection.getNumbers());
 
                 System.out.println("Success! You have mess again!");
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
                 break;
             case 7:
                 Sorting.showInfo();
 
-                Main.returnToMainMenu();
+                SortingApp.returnToMainMenu();
                 break;
             case 0:
-                displayMainMenu(sc, array);
+                displayMainMenu(sc, sortableCollection);
                 break;
         }
 
         // checks if user wants to exit this menu
         if (choice != 0) {
-            displaySortingMenu(sc, array);
+            displaySortingMenu(sc, sortableCollection);
         }
     }
 }

@@ -2,13 +2,19 @@ package io.github.khram0v.app;
 
 import io.github.khram0v.input.InputHandler;
 import io.github.khram0v.model.SortableList;
+import io.github.khram0v.sorting.*;
+import io.github.khram0v.utils.SortingInfo;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 public class SortingApp {
-    static SortableList<Integer> sortableList = new SortableList<>();
+    static List<Integer> numbers = new ArrayList<>(List.of(12, 23, 58, 19, 1, 0, -20, 14, 19, -3));
+    static SortableList<Integer> sortableList = new SortableList<>(numbers);
     static InputHandler input = new InputHandler();
+    static SortingAlgorithm<Integer> sortingAlgorithm;
 
     public static void main(String[] args) {
 
@@ -22,19 +28,6 @@ public class SortingApp {
 
         System.out.print("\n[Press Enter to return to main menu]");
         sc.nextLine();
-    }
-
-    public static boolean orderPrompt() {
-        int order;
-
-        System.out.println("\nChoose sorting order:");
-        System.out.println("\t1. Ascending");
-        System.out.println("\t2. Descending");
-
-        order = input.readMenuChoice(1, 2, "> ");
-
-        // returns true if ascending order is chosen; otherwise, returns false
-        return order == 1;
     }
 
     public static void displayMainMenu(SortableList<Integer> sortableList) {
@@ -70,7 +63,7 @@ public class SortingApp {
 
         // TODO: Replace non-existent methods with new ones
         switch (choice) {
-//            case 1 -> sortableList.printArray();
+            case 1 -> System.out.println(sortableList.getElements());
 //            case 2 -> sortableList.addNumbers();
 //            case 3 -> sortableList.removeNumber();
 //            case 4 -> sortableList.replaceNumber();
@@ -84,7 +77,6 @@ public class SortingApp {
 
     public static void displaySortingMenu(SortableList<Integer> sortableList) {
         int choice;
-        boolean ascending;
 
         System.out.println("\nOh, yeah, I see mess in your numbers. I can fix that!");
         System.out.println("What sorting algorithm do you prefer?");
@@ -99,63 +91,50 @@ public class SortingApp {
 
         choice = input.readMenuChoice(0, 7, "> ");
 
-        // TODO: Replace old Sorting calls with new ones
         switch (choice) {
             case 1 -> {
-                ascending = SortingApp.orderPrompt();
-//                Sorting.bubbleSort(sortableList, ascending);
+                sortingAlgorithm = new BubbleSort<>();
+                sortingAlgorithm.sort(sortableList.getElements());
 
                 System.out.println("Success! All your numbers are sorted now by Bubble Sort!");
-                System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
-
                 SortingApp.returnToMainMenu();
             }
             case 2 -> {
-                ascending = SortingApp.orderPrompt();
-//                Sorting.selectionSort(sortableList, ascending);
+                sortingAlgorithm = new SelectionSort<>();
+                sortingAlgorithm.sort(sortableList.getElements());
 
                 System.out.println("Success! All your numbers are sorted now by Selection Sort!");
-                System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
-
                 SortingApp.returnToMainMenu();
             }
             case 3 -> {
-                ascending = SortingApp.orderPrompt();
-//                Sorting.insertionSort(sortableList, ascending);
+                sortingAlgorithm = new InsertionSort<>();
+                sortingAlgorithm.sort(sortableList.getElements());
 
                 System.out.println("Success! All your numbers are sorted now by Insertion Sort!");
-                System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
-
                 SortingApp.returnToMainMenu();
             }
             case 4 -> {
-                ascending = SortingApp.orderPrompt();
-//                Sorting.mergeSort(sortableList, 0, numbersSize - 1, ascending);
+                sortingAlgorithm = new MergeSort<>();
+                sortingAlgorithm.sort(sortableList.getElements());
 
                 System.out.println("Success! All your numbers are sorted now by Merge Sort!");
-                System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
-
                 SortingApp.returnToMainMenu();
             }
             case 5 -> {
-                ascending = SortingApp.orderPrompt();
-//                Sorting.quickSort(sortableList, 0, numbersSize - 1, ascending);
+                sortingAlgorithm = new QuickSort<>();
+                sortingAlgorithm.sort(sortableList.getElements());
 
                 System.out.println("Success! All your numbers are sorted now by Quick Sort!");
-                System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
-
                 SortingApp.returnToMainMenu();
             }
             case 6 -> {
                 Collections.shuffle(sortableList.getElements());
 
                 System.out.println("Success! You have mess again!");
-
                 SortingApp.returnToMainMenu();
             }
             case 7 -> {
-//                Sorting.showInfo();
-
+                SortingInfo.printSortingInfo();
                 SortingApp.returnToMainMenu();
             }
             case 0 -> displayMainMenu(sortableList);

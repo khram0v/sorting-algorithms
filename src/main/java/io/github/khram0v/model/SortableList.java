@@ -53,7 +53,7 @@ public class SortableList<E> {
     }
 
     public List<E> getElements() {
-        return Collections.unmodifiableList(elements);
+        return elements;
     }
 
     public int size() {

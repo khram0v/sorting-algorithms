@@ -12,7 +12,7 @@ public class InputHandler {
 
     public int readInt(String prompt) {
         while (true) {
-            System.out.println(prompt);
+            System.out.print(prompt);
             try {
                 return sc.nextInt();
             } catch (InputMismatchException e) {
@@ -23,7 +23,7 @@ public class InputHandler {
     }
 
     public String readLine(String prompt) {
-        System.out.println(prompt);
+        System.out.print(prompt);
         return sc.nextLine();
     }
 

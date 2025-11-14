@@ -2,7 +2,6 @@ package io.github.khram0v.app;
 
 import io.github.khram0v.input.InputHandler;
 import io.github.khram0v.model.SortableList;
-import io.github.khram0v.sorting.Sorting;
 
 import java.util.Collections;
 import java.util.Scanner;
@@ -17,7 +16,6 @@ public class SortingApp {
             SortingApp.displayMainMenu(sortableList);
         }
     }
-
 
     public static void returnToMainMenu() {
         Scanner sc = new Scanner(System.in);
@@ -87,7 +85,6 @@ public class SortingApp {
     public static void displaySortingMenu(SortableList<Integer> sortableList) {
         int choice;
         boolean ascending;
-        int numbersSize = sortableList.size();
 
         System.out.println("\nOh, yeah, I see mess in your numbers. I can fix that!");
         System.out.println("What sorting algorithm do you prefer?");
@@ -102,10 +99,11 @@ public class SortingApp {
 
         choice = input.readMenuChoice(0, 7, "> ");
 
+        // TODO: Replace old Sorting calls with new ones
         switch (choice) {
             case 1 -> {
                 ascending = SortingApp.orderPrompt();
-                Sorting.bubbleSort(sortableList, ascending);
+//                Sorting.bubbleSort(sortableList, ascending);
 
                 System.out.println("Success! All your numbers are sorted now by Bubble Sort!");
                 System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
@@ -114,7 +112,7 @@ public class SortingApp {
             }
             case 2 -> {
                 ascending = SortingApp.orderPrompt();
-                Sorting.selectionSort(sortableList, ascending);
+//                Sorting.selectionSort(sortableList, ascending);
 
                 System.out.println("Success! All your numbers are sorted now by Selection Sort!");
                 System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
@@ -123,7 +121,7 @@ public class SortingApp {
             }
             case 3 -> {
                 ascending = SortingApp.orderPrompt();
-                Sorting.insertionSort(sortableList, ascending);
+//                Sorting.insertionSort(sortableList, ascending);
 
                 System.out.println("Success! All your numbers are sorted now by Insertion Sort!");
                 System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
@@ -132,7 +130,7 @@ public class SortingApp {
             }
             case 4 -> {
                 ascending = SortingApp.orderPrompt();
-                Sorting.mergeSort(sortableList, 0, numbersSize - 1, ascending);
+//                Sorting.mergeSort(sortableList, 0, numbersSize - 1, ascending);
 
                 System.out.println("Success! All your numbers are sorted now by Merge Sort!");
                 System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
@@ -141,7 +139,7 @@ public class SortingApp {
             }
             case 5 -> {
                 ascending = SortingApp.orderPrompt();
-                Sorting.quickSort(sortableList, 0, numbersSize - 1, ascending);
+//                Sorting.quickSort(sortableList, 0, numbersSize - 1, ascending);
 
                 System.out.println("Success! All your numbers are sorted now by Quick Sort!");
                 System.out.println("Now you have your numbers in " + (ascending ? "ascending" : "descending") + " order.");
@@ -156,7 +154,7 @@ public class SortingApp {
                 SortingApp.returnToMainMenu();
             }
             case 7 -> {
-                Sorting.showInfo();
+//                Sorting.showInfo();
 
                 SortingApp.returnToMainMenu();
             }

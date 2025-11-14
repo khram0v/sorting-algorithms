@@ -24,7 +24,6 @@ public class InputHandler {
 
     public String readLine(String prompt) {
         System.out.println(prompt);
-        sc.nextLine(); // in case previous nextInt left a newline
         return sc.nextLine();
     }
 

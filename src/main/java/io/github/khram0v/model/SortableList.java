@@ -4,32 +4,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SortableList<E> {
+public class SortableList<E extends Comparable<E>> {
     private final List<E> elements;
 
     public SortableList() {
         elements = new ArrayList<>();
     }
 
-    public SortableList(List<E> initialElements) {
-        this.elements = new ArrayList<>(initialElements);
-    }
-
     public void add(E element) {
         elements.add(element);
     }
 
-    public void removeByElement(E element) {
-        elements.remove(element);
-    }
-
-    public boolean removeByIndex(int index) {
+    public boolean remove(int index) {
         if (index < 0 || index >= elements.size()) return false;
         elements.remove(index);
         return true;
     }
 
-    public boolean replaceAtIndex(int index, E newElement) {
+    public boolean replace(int index, E newElement) {
         if (index < 0 || index >= elements.size()) return false;
         elements.set(index, newElement);
         return true;
@@ -52,11 +44,20 @@ public class SortableList<E> {
         }
     }
 
+    public void shuffle() {
+        Collections.shuffle(elements);
+    }
+
     public List<E> getElements() {
         return elements;
     }
 
     public int size() {
         return elements.size();
+    }
+
+    @Override
+    public String toString() {
+        return elements.toString();
     }
 }

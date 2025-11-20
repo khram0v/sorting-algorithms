@@ -1,28 +1,90 @@
-# List Sorting Application
-This is a simple project implementing sorting algorithms and array manipulation functionalities. 
-It allows users to perform basic actions with array and sort the array in both ascending and descending order.
-The focus is on practical implementation and performance considerations.
+# Sorting Application
 
-## Installation
-1. Clone the repository to your local machine (for contributors recommended to fork first)
-    ```bash
-    git clone https://github.com/khram0v/sorting-algorithms.git
-2. Use any Java IDE (IntelliJ, Eclipse etc.) to view files
-3. In Shell or terminal make sure you are in src directory and run command: `javac src/main/java/io/github/khram0v/*.java`
-4. After completion your folder will contain 3 .class files
-5. In terminal run command: `java -cp src/main/java io.github.khram0v.app.SortingApp`
+A simple, extensible Java console application that demonstrates sorting algorithms, list manipulation,
+and clean menu‑driven UI architecture. The project is built with a strong focus on separation of concerns,
+input handling, and generic programming using Java's `Comparable` interface.
 
-## Visual
-After running Main class you should see this interface
-
-![Main Menu](https://github.com/user-attachments/assets/c6deec18-9e82-4b85-abc5-0a5fd5f833d3)
+---
 
 ## Features
-- Array actions: add, remove, replace elements
-- Sorting algorithms: Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Quick Sort
-- Shuffle array to try another algorithm
-- Allows user selection of sorting order (ascending/descending)
-- Shows differences between various sorting algorithms. Presents the Big O Notation for each
+
+### **List Management**
+
+- Add elements
+- Remove elements
+- Replace values
+- Shuffle list
+- Reverse list
+- Print list contents
+
+### **Sorting Algorithms**
+
+Implements the following algorithms through a unified `SortingAlgorithm` interface:
+
+- Bubble Sort
+- Selection Sort
+- Insertion Sort
+- Merge Sort
+- Quick Sort
+
+Each algorithm operates on a `List<E extends Comparable<E>>`.
+
+### **Input Handling**
+
+A dedicated `InputHandler` class:
+
+- Safely reads integer values
+- Validates ranges
+- Reads values based on selected `DataType`
+- Handles invalid input gracefully
+- Clears console and waits for user input
+
+### **Generic Sortable List**
+
+`SortableList<E>` is a pure data container with:
+
+- Internal `List<E>` storage
+- Generic constraints (`E extends Comparable<E>`)
+- Reversible and shuffle support
+- Replace and remove with safety checks
+
+### **Structured Console UI**
+
+The application uses three UI components:
+
+- `MainMenu`
+- `ListMenu`
+- `SortingMenu`
+
+Each menu is responsible for its own logic and uses dependency‑injected `InputHandler`.
+
+---
+
+## How It Works
+
+1. User selects a data type (`INTEGER`, `DOUBLE`, `STRING`).
+2. `MainMenu` creates an appropriate `SortableList<?>`.
+3. The user can choose to:
+
+    - Manage the list
+    - Sort the list
+4. Each operation triggers the corresponding menu class.
+5. Sorting algorithms work directly on the list returned by `getElements()`.
+
+---
+
+## Running the Application
+
+Compile and run normally:
+
+```bash
+javac -d out $(find src -name "*.java")
+java -cp out io.github.khram0v.app.SortingApp
+```
+
+Or run directly from IntelliJ.
+
+---
 
 ## Contributing
 ### Working on Issues

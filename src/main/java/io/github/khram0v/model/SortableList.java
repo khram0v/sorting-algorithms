@@ -28,19 +28,18 @@ public class SortableList<E extends Comparable<E>> {
     }
 
     public void reverse() {
-        reverse(0, elements.size());
+        reverse(0, elements.size() - 1);
     }
 
     public void reverse(int start, int end) {
         if (start < 0 || end > elements.size() || start >= end) return;
-        int left = start;
-        int right = end - 1;
-        while (left < right) {
-            E temp = elements.get(left);
-            elements.set(left, elements.get(right));
-            elements.set(right, temp);
-            left++;
-            right--;
+
+        while (start < end) {
+            E temp = elements.get(start);
+            elements.set(start, elements.get(end));
+            elements.set(end, temp);
+            start++;
+            end--;
         }
     }
 
